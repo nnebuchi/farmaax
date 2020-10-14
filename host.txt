@@ -1,0 +1,13 @@
+DB: 
+
+name:		megawea1_farmaax
+username:  	megawea1_farmaax
+password: 	2mTU3LP0YMKS
+
+
+
+Cpanel:		username:megawea1
+password:	Ba41dF.iA@A6t4
+
+
+FTP 
