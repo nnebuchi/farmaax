@@ -1,4 +1,4 @@
-@extends('layouts.user')
+@extends('layouts.dashboard_master')
 @section('title', 'Fund my wallet')
 @section('content')
 <style>
@@ -28,7 +28,7 @@
             <div class="col-md-12 col-lg-6">
                 <div class="card">
                     <div class="card-header text-center">
-                        <h4 class="text-monospace">Fund My Wallet</h4>
+                        <h4 class="text-monospace">Fund your Wallet</h4>
                     </div>
                     <div class="card-body p-3">
                         <form action="{{ route('initializeWalletFunding') }}" method="post">
@@ -36,9 +36,7 @@
                             <div class="form-group">
                                 <div class="form-group">
                                     <label for="amount">Enter Amount:</label>
-                                    <input type="number" name="amount" id="amount"
-                                        class="form-control @error('amount') is-invalid @enderror"
-                                        placeholder="Enter Amount to be funded" required>
+                                    <input type="number" name="amount" id="amount" class="form-control @error('amount') is-invalid @enderror" placeholder="Enter Amount to be funded" required min="1">
                                     @error('amount')
                                     <li class="text-danger">
                                         {{ $message }}
@@ -46,7 +44,7 @@
                                     @enderror
                                 </div>
 
-                                <button type="submit" class="btn btn-primary">Fund My Wallet</button>
+                                <button type="submit" class="btn primary-btn">Proceed >>></button>
                             </div>
                         </form>
                     </div>

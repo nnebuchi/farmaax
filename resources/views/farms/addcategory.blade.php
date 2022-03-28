@@ -22,7 +22,7 @@
     .card-header h4{
         color: white;
         font-weight: bold;
-    }
+    )
 
     
 </style>

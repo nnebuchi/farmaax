@@ -2,7 +2,7 @@
     @section('title', 'Add farm category')
     @section('content')
     <style>
-    input{
+    input, textarea, select{
         border: 2px solid #676501!important;
     }
 
@@ -60,7 +60,13 @@
                                 </div>
 
 
-                                 
+                                 <div class="form-group">
+                                    <label for="description">Farm Description: </label>
+                                    <textarea class="form-control" name="description" id="description" rows="6" required></textarea>
+                                         @error('description')
+                                    <li class="text-danger">{{ $message }}</li>
+                                    @enderror
+                                </div>
                                 
                                 <div class="form-group">
                                     <label for="image">type Image:</label>
@@ -75,7 +81,6 @@
                                 <button type="submit" class=" btn-block btn btn-success">Submit</button>
                             </form>
                         </div>
-
 
 
                     </div>
@@ -101,7 +106,7 @@
                             <tr>
                                 <td>{{ $type->name }}</td>
                                 <td><img src="{{ asset('storage/farmcategoryImages/'.$type->image) }}" height="50" width="50" class="rounded-circle"></td>
-                                <td><a href="{{ url('dashboard/admin/editfarmtype/'.$type->id) }}" class="btn btn-sm btn-success">Edit <i class="fa fa-edit"></i></a> <a href="{{ route('costAnalysis', $type->id) }}" class="btn btn-sm btn-warning">Add Farm Cost Analysis <i class="fa fa-edit"></i></a></td>
+                                <td><a href="{{ url('dashboard/admin/editfarmtype/'.$type->id) }}" class="btn btn-sm btn-success">Edit <i class="fa fa-edit"></i></a> <a href="{{ route('costAnalysis', $type->id) }}" class="btn btn-sm btn-warning">Add Farm Cost Analysis <i class="fa fa-edit"></i></a> <a class="btn btn-dark" href="{{ route('add-milestone', $type->id) }}">Add Milestone <i class="fa fa-edit"></i></a></td>
                              
                             </tr>
                             @endforeach
@@ -112,4 +117,9 @@
 
             </div>
         </div>
+
+         <script src="https://cdn.ckeditor.com/4.16.0/standard/ckeditor.js"></script>
+         <script>
+                CKEDITOR.replace( 'description' );
+        </script>
     @endsection

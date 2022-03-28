@@ -11,12 +11,11 @@ use App\Investment_cart;
 @endauth
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
     <title>@yield('title', 'Welcome to Farmaax')</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
@@ -34,6 +33,7 @@ use App\Investment_cart;
     <link rel="stylesheet" href="{{ asset('css/icomoon.css') }}">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     <script src="{{ asset('js/jquery.min.js') }}"></script>
+   
 </head>
 
 <body>
@@ -87,6 +87,7 @@ use App\Investment_cart;
         }
 
     </style>
+
     @guest
         <div class="pt-1 bg-white d-none d-md-block">
             <div class="row justify-content-between px-5 py-3">
@@ -117,7 +118,6 @@ use App\Investment_cart;
                                 class="d-flex align-items-center justify-content-center social-icon"><span
                                     class="social-icon fa fa-instagram social-icon"><i
                                         class="sr-only">Instagram</i></span></a>
-
                         </p>
                     </div>
                 </div>
@@ -149,8 +149,8 @@ use App\Investment_cart;
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 {{-- <a class="dropdown-item" href="#">Action</a>
                                 {{-- <a class="dropdown-item" href="#">Another action</a> --}}
-                                                                                                                                {{-- <div class="dropdown-divider"></div>  --}}
-                                                                                                                                <a class="dropdown-item" href="{{ url('logout') }}">Logout</a>
+                                    {{-- <div class="dropdown-divider"></div>  --}}
+                                    <a class="dropdown-item" href="{{ url('logout') }}">Logout</a>
                             </div>
                         </li>
 
@@ -178,10 +178,11 @@ use App\Investment_cart;
             </div>
         </div>
     </nav>
-    <!-- END nav -->
-    @include('layouts.messages')
-    @yield('content')
-
+    {{-- <div class="container"> --}}
+        <!-- END nav -->
+        @include('layouts.messages')
+        @yield('content')
+    {{-- </div> --}}
 
 
     <footer class="ftco-footer ftco-bg-dark ftco-section">
@@ -190,7 +191,8 @@ use App\Investment_cart;
                 <div class="col-md-6 col-lg">
                     <div class="ftco-footer-widget mb-4">
                         <h2 class="logo"><a href="#">Far<span>Maax</span></a></h2>
-                        <p>Farmaax is an Agricultural real estate, farming and farm investment company. We are giving
+                        <p>Farmaax is an Agricultural real estate, farming and farm investment company. We are
+                            giving
                             you the opportunity to purchase farmland, invest in a farm or start your personal farm
                             projects using your mobile device.</p>
                         <ul class="ftco-footer-social list-unstyled float-md-left float-lft mt-5">
@@ -280,6 +282,7 @@ use App\Investment_cart;
 
 
 
+
     <!-- loader -->
     <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px">
             <circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee" />
@@ -315,6 +318,11 @@ use App\Investment_cart;
         gtag('config', 'UA-23581568-13');
 
     </script>
+
+
+<script>
+    var url = "{{url('/')}}"
+</script>
 
 </body>
 

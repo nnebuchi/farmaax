@@ -7,6 +7,8 @@ use App\Category;
 use App\State;
 use App\Lga;
 use App\Town;
+use App\User;
+Use Str;
 class GenericController extends Controller
 {
     public function fetchFarmTypes(Request $request, $Category_id){
@@ -20,6 +22,7 @@ class GenericController extends Controller
     	$states=State::where('country_id', $country_id)->get();
 
     	return json_encode($states);
+        
 
     	// $country_arr=[];
 
@@ -43,5 +46,19 @@ class GenericController extends Controller
 
     	// $country_arr=[];
 
+    }
+
+    public function generateRef(){
+
+        $users = User::all();
+
+        foreach ($users as $user) {
+            
+            $ref = time().Str::random(4);
+
+            $user->referral_code = $ref;
+
+            $user->save();
+        }
     }
 }

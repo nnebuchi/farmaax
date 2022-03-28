@@ -15,7 +15,7 @@ class CreateFarmsTable extends Migration
     {
         Schema::create('farms', function (Blueprint $table) {
             $table->id();
-            $table->integer('owner_id');
+            $table->integer('owner_id')->nullable();
             $table->integer('manager_id')->nullable();
             $table->string('farm_type'); // like fish farms and others
             $table->string('farm_category');

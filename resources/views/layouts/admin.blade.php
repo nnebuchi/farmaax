@@ -18,7 +18,7 @@
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
-        }); 
+        });
     </script>
 
   @php
@@ -27,7 +27,7 @@
   @endphp
     <script>
         var universal_token= '<?php echo csrf_token();?>';
-        var url='<?php echo $root."/"; ?>';
+        var url="<?php echo  url('/') ?>";
         var admin_url='<?php echo url('dashboard/admin/'); ?>';
     </script>
     <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
@@ -135,19 +135,49 @@
                         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseProducts"
                             aria-expanded="false" aria-controls="collapseProducts">
                             <div class="sb-nav-link-icon"><i class="fas fa-shopping-cart"></i></div>
-                            Farmaax Products
+                            Store
                             <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                         </a>
                         <div class="collapse" id="collapseProducts" aria-labelledby="headingTwo"
                             data-parent="#sidenavAccordion">
                             <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionProducts">
-                                <a class="nav-link" href="password.html">All Products</a>
+                                <a class="nav-link" href="{{ route('add-product') }}">Add Products</a>
                                 <a class="nav-link" href="password.html">Legumes</a>
                                 <a class="nav-link" href="password.html">Maizes</a>
 
                             </nav>
                         </div>
                         {{-- endProducts --}}
+
+                        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseSettings"
+                            aria-expanded="false" aria-controls="collapseProducts">
+                            <div class="sb-nav-link-icon"><i class="fas fa-cog"></i></div>
+                            Settings
+                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                        </a>
+                        <div class="collapse" id="collapseSettings" aria-labelledby="headingTwo"
+                            data-parent="#sidenavAccordion">
+                            <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionProducts">
+                                <a class="nav-link" href="{{ route('settings') }}">Site Settings</a>
+
+
+                            </nav>
+                        </div>
+                        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePopups"
+                            aria-expanded="false" aria-controls="collapsePopups">
+                            <div class="sb-nav-link-icon"><i class="fa fa-window-restore "></i></div>
+                            Pop-Ups
+                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                        </a>
+                        <div class="collapse" id="collapsePopups" aria-labelledby="headingTwo"
+                            data-parent="#sidenavAccordion">
+                            <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionProducts">
+                                <a class="nav-link" href="{{ route('pop-us.index') }}">All Pop-ups</a>
+                                <a class="nav-link" href="{{ route('pop-us.create') }}">Add Pop-up</a>
+
+
+                            </nav>
+                        </div>
 
                         {{-- pages --}}
                         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
@@ -217,6 +247,13 @@
     <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
     <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
     <script src="{{ asset('src/assets/demo/datatables-demo.js') }}"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/switchery/0.8.2/switchery.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/switchery/0.8.2/switchery.min.js"></script>
+<script>let elems = Array.prototype.slice.call(document.querySelectorAll('.js-switch'));
+
+    elems.forEach(function(html) {
+        let switchery = new Switchery(html,  { size: 'small' });
+    });</script>
 </body>
 
 </html>

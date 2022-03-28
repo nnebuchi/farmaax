@@ -26,10 +26,36 @@
                                 @else
                                     <h4 class=" text-danger">Sold Out</h4>
                                 @endif
+                                <a href="{{ route('edit-land', $land->id) }}" class="btn btn-primary">Edit</a>
+                                
+                                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal-{{ $land->id }}">
+                                  Delete 
+                                </button>
                             </div>
                         </div>
                     </a>
                     <br>
+                </div>
+
+
+                <div class="modal" id="exampleModal-{{ $land->id }}" tabindex="-1" role="dialog">
+                  <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title">Modal title</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                        <p>Are you sure you want to delete this land?. this action can't be reversed</p>
+                      </div>
+                      <div class="modal-footer">
+                        <a href="{{ route('delete-land', $land->id) }}" class="btn btn-primary">Proceed to delete</a>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Do not delete</button>
+                      </div>
+                    </div>
+                  </div>
                 </div>
 
             @endforeach

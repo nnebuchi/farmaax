@@ -19,6 +19,30 @@ $(document).ready(function() {
           readURL(this);
         });
 
+
+
+        // image upload preview for other product photos
+        function pickURL(input) {
+          if (input.files && input.files[0]) {
+           
+            var reader = new FileReader();
+            
+            reader.onload = function(e) {
+
+                var fieldId = $(input).attr('id');
+
+                console.log(fieldId);
+              $('#'+fieldId).attr('src', e.target.result);
+            }
+            
+            reader.readAsDataURL(input.files[0]); // convert to base64 string
+          }
+        }
+
+        $(".opic").change(function() {
+          pickURL(this);
+        });
+
     // handle category and type selection
 
 

@@ -16,15 +16,7 @@ class CreateFarmManagersTable extends Migration
         Schema::create('farm_managers', function (Blueprint $table) {
             $table->id();
             $table->string('user_id');
-            $table->string('manager_id');
-            $table->string('phone');
-            $table->string('Crop Farm');
-            $table->string('Animal Farm');
-            $table->string('Goat Farm');
-            $table->string('Fish Farm');
-            $table->string('Apple Farm');
-            $table->string('Catfish Farm');
-            $table->string('Poultry Farm');
+            $table->string('name');
             $table->timestamps();
         });
     }

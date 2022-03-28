@@ -1,11 +1,11 @@
-@extends('layouts.user')
+@extends('layouts.dashboard_master')
 @section('title')
 @section('content')
 
-<section class="ftco-section ftco-no-pt bg-white" style="background-colo: #fbd341;">
+<section class="ftco-section ftco-no-pt" style="background-colo: #fbd341;">
     <div class="row">
         <div class="col-md-8 offset-md-2">
-
+                <h3 class="mt-5">Partnership/Investment Farming Cart</h3>
             <div class="table-responsive">
                 <table class="table mt-5 table-dark px-3 " style="border-radius: 10px;">
                     <thead>
@@ -38,8 +38,7 @@
                                         class="sub-t-{{ $count }}">{{ number_format($cart->units *  $cart->unit_cost) }}</span>
                                 </td>
                                 <td><button class="btn btn-sm primary-btn">proceed</button></td>
-                                <td><a href="{{ route('removeFromCart', $cart->cartid) }}"><i
-                                            class="fa text-danger fa-trash fa-2x" aria-hidden="true"></i></a></td>
+                                <td><a href="{{ route('removeFromCart', $cart->cartid) }}" class="btn-light py-1 px-2 rounded-right rounded-left"><i class="fa text-danger fa-trash" aria-hidden="true"></i></a></td>
 
                                 <input type="hidden" name="amount" class="sub-t-form-{{ $count }}"
                                     value="{{ $cart->units *  $cart->unit_cost }}">

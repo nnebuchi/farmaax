@@ -1,4 +1,4 @@
-@extends('layouts.user')
+@extends('layouts.dashboard_master')
 @section('title')
 @section('content')
 
@@ -23,7 +23,7 @@
                                         width="50" class="rounded-circle"></td>
                                 <td>&#8358; {{ number_format($farm->unit_cost) }} <span
                                         class="hidden-cost d-none">{{ $farm->unit_cost }}</span></td>
-                                <td><input type="number" name="units" class="units" value="<?= $selected_units ?>"></td>
+                                <td><input type="number" name="units" class="units" value="<?= $selected_units ?>" max="{{ $farm->total_units }}" min="1"></td>
                                 <td>&#8358; <span
                                         class="sub-t">{{ number_format($selected_units * $farm->unit_cost) }}</span></td>
                                 <td><button class="btn btn-sm primary-btn">proceed</button></td>

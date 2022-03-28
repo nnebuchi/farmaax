@@ -1,0 +1,545 @@
+@import url('https://fonts.googleapis.com/css2?family=Catamaran:wght@900&display=swap');
+
+.myAmaranth{
+    font-family: 'Catamaran', sans-serif;
+    font-size:50px;
+}
+
+.mySuccess{
+    background:#4e9525!important;
+    border-radius: 50px!important;
+    color:#fff!important;
+    border:solid 2px #4e9525!important;
+    /* font-weight: bold; */
+    padding:3px 15px;
+    margin:0px 10px;
+}
+
+
+.mySuccess:hover{
+    background:#000!important;
+    transition:all ease-in-out .5s!important;
+}
+
+
+.myFontawesome i{
+    border: solid 2px #4e9525!important;
+    padding: 8px 15px;
+    border-radius: 50px;
+    color:#fff!important;
+    margin:0px 5px!important;
+}
+
+.myFontawesome i:hover{
+    background:#000!important;
+    transition:all ease-in-out .5s!important;
+}
+
+
+
+.myNavbarNavLink li a.myLink{
+    border: #4e9525 solid 2px!important;
+    margin:0px 10px;
+    border-radius: 50px;
+    padding:3px 15px!important;
+    color:#fff!important;
+}
+
+.myDropdownLink a{
+    
+    border: #4e9525 solid 2px!important;
+    margin:0px 10px;
+    border-radius: 50px;
+    padding:3px 15px!important;
+    color:#fff!important;
+}
+
+
+a.myAnchor{
+    border:0!important;
+    color:#000!important;
+    margin:0!important;
+}
+
+a.myAnchor:hover{
+    color:#fff!important;
+}
+
+.myNavbarNavLink li a:hover{
+    background: #000!important;
+    transition: all ease-in-out .5s;
+}
+
+.navbar-toggler {
+    padding: .25rem .75rem;
+    font-size: 1.25rem;
+    line-height: 1;
+    background-color: transparent;
+    border: 1px solid transparent;
+        border-top-color: transparent;
+        border-right-color: transparent;
+        border-bottom-color: transparent;
+        border-left-color: transparent;
+    border-radius: .25rem;
+    color:#fff!important;
+}
+
+.myBtn{
+    border-radius: 50px!important;
+    padding-right: 30px!important;
+    padding-left:30px!important;
+    font-weight:600!important;
+    margin-top:20px!important;
+    background:#4e9525!important;
+    border:0!important;
+    box-shadow:2px 2px 5px 2px #000!important;
+}
+
+.myBtn:hover{
+    background:#000!important;
+    transition:all ease-in-out .5s!important;
+}
+
+body{
+    background:#151d22!important;
+    padding: 0px auto;
+}
+
+header .myHeaderCustom{
+    margin-top:100px!important;
+}
+
+div .myImg{
+    background: url('../img/farmer1-Ai.png') no-repeat!important;
+    background-size: cover;
+    background-position: center!important;
+   padding:100px;
+}
+
+.no-padding{
+    padding: 0!important;
+}
+
+
+
+
+.mySectionBox{
+    width: 100%;
+    height: 530px!important;
+    text-align: center;
+}
+
+.mySection1{
+    /*background-image: url("../../assets/img/leave1.jpg");*/
+    background-size:cover;
+}
+
+.mySection2{
+    /*background-image: url("../../assets/img/leave2.jpg");*/
+    background-size:cover;
+}
+
+
+.mySection3{
+    /*background-image: url("../../assets/img/okleave.jpg");*/
+    background-size:cover;
+}
+
+.myimg{
+    padding-top:120px;
+}
+
+
+.myPadding-h2{
+    padding-top:10px;
+    font-size:35px;
+}
+
+.myLearn{
+    border-radius: 50px!important;
+    background: #fff!important;
+    border: solid 2px #fff!important;
+    color:#000!important;
+    font-weight:700;
+    box-shadow: 2px 2px 10px #fbd341!important;
+}
+.myLearn:hover{
+    border:2px solid black!important;
+    background-color: black!important;
+    color: white!important;
+  }
+
+.myCrop{
+    font-size: 45px!important;
+    color:#000!important;
+    padding-top:100px!important;
+}
+
+.myCropbtn{
+    background:#4e9525!important;
+    color:#fff!important;
+    border-radius: 50px!important;
+    border: solid 2px #4e9525!important;
+}
+
+
+.myFontsize2{
+    font-size:30px!important;
+}
+
+.carousel-control-next-icon{
+    position: relative;
+    right:-35px!important;
+}
+
+.carousel-control-prev-icon{
+    position: relative;
+    left:-35px!important;
+}
+
+.smalltext{
+    font-size:25px;
+}
+
+
+.myTest{
+    width:100%;
+    height: 600px!important;
+}
+
+.mytestpadding{
+    padding-top:80px!important;
+}
+
+.myBackg{
+    background: url('../img/testinony-bg.png');
+    background-size:cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    
+}
+
+.myCircleImg{
+    width:100%;
+    height: 100%;
+}
+
+.myCircleImg img{
+
+    width:150px;
+    height: 150px;
+    border-radius:50%!important;
+    border: solid 3px #fff!important;
+    box-shadow:3px 3px 10px #d1e70d!important;
+}
+
+.mytestsmall{
+    font-size:14px!important;
+    color:#fff!important;
+}
+
+.myshadow{
+    border-top:solid 1px #fff!important;
+    border-bottom: #fbd341 solid 3px;
+    box-shadow: 3px 3px 10px #000!important;
+}
+
+.myshadow:hover{
+    box-shadow: none!important;
+    /* border:none!important; */
+    transition: ease-in-out all .5s;
+}
+
+.myquicksize{
+    font-size: 20px;
+}
+
+.myNewsletter{
+    font-size: 23px!important;
+}
+
+.myRowPadding{
+    padding:100px 0px;
+}
+
+.myPaddingA{
+    padding-top:10px;
+    padding-bottom:10px;
+}
+
+
+.myAboutSpace{
+    padding-top:10px;
+    line-height: 33px;
+    font-size: 15px;
+}
+
+#basic-subBtn{
+    background:white!important;
+    border-top-right-radius: 20px!important;
+    border-bottom-right-radius: 20px!important;
+    color:#151d22!important;
+    border:solid #fff 1px!important;
+
+}
+
+.myFormcontrol{
+    background:transparent!important;
+    border-top-left-radius: 20px!important;
+    border-bottom-left-radius: 20px!important;
+}
+
+.myFormcontrol:focus{
+    box-shadow: none!important;
+    outline: none!important;
+    
+}
+.mySocial a i{
+    font-size:25px;
+    color:#fff!important;
+    margin-top:10px;
+    margin-right: 10px;
+    
+}
+
+.block-20 {
+    overflow: hidden;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    position: relative;
+    display: block;
+    width: 100%;
+    height: 270px;
+}
+
+.primary-btn{
+    background-color: #4e9525;
+    color: white!important;
+    border: 2px solid #eed240;
+
+  }
+  .primary-btn:hover{
+    background-color: white!important;
+    color: #4e9525!important;
+    border: 2px solid #eed240;
+
+  }
+
+  .hero-img{
+    width: 600px;
+  }
+  .farm-type-card{
+    height: 400px;
+  }
+  .farm-type-img{
+    height: 250px;
+  }
+
+  @media(max-width: 1196px){
+    .hero-img{
+        width: 400px!important;
+    }
+
+    .h2{
+        font-size: 40px!important;
+    }
+  }
+
+  @media(max-width: 1160px){
+    .h6{
+       font-size: 25px;
+    }
+  }
+
+  @media(max-width: 767px){
+    .container{
+        padding-right: 0px!important;
+        padding-left: 0px!important;
+    }
+    .hero-img-div{
+        position: absolute;
+        top: 500px;
+        right: 10px;
+
+    }
+
+    .hero-row{
+        height: 715px;
+    }
+    .hero-img{
+        width: 350px!important;
+    }
+  
+  .h2{
+        font-size: 30px!important;
+    }
+
+    .hero-desc{
+        font-size: 15px;
+        /*font-weight: bold;*/
+    }
+}
+
+@media(max-width: 479px){
+    .farm-type-card{
+        height: 350px;
+      }
+      .farm-type-img{
+        height: 200px;
+      }
+}
+
+
+@media(max-width: 447px){
+    .hero-img-div{
+       
+        top: 500px;
+        right: 5px;
+    }
+    .hero-btn{
+        margin-left: 100px;
+    }
+    .h4{
+        font-size: 20px!important;
+    }
+}
+
+
+
+@media(max-width: 398px){
+    .hero-img-div{
+           
+        top: 515px;
+    }
+}
+
+@media(max-width: 399px){
+    .hero-img-div{    
+        top: 550px;
+    }
+    .hero-row{
+        height: 765px;
+    }
+}
+
+@media(max-width: 397px){
+    .hero-img-div{    
+        top: 520px;
+    }
+    .hero-row{
+        height: 737px;
+    }
+}
+
+@media(max-width: 360px){
+    .hero-img-div{    
+        top: 585px;
+    }
+    .hero-row{
+        height: 767px;
+    }
+}
+
+@media(max-width: 344px){
+    .hero-img-div{    
+        top: 590px;
+    }
+    .hero-row{
+        height: 742px;
+    }
+    .hero-img{
+        width: 320px!important;
+    }
+}
+
+@media(max-width: 324px){
+    .hero-img-div{    
+        top: 590px;
+    }
+    .hero-row{
+        height: 744px;
+    }
+}
+
+@media(max-width: 306px){
+    .hero-desc{
+        display: none;
+    }
+    .hero-img-div{    
+        top: 320px;
+    }
+    .hero-row{
+        height: 474px;
+    }
+}
+
+@media(max-width: 268px){
+    .hero-desc{
+        display: none;
+    }
+    .hero-section .h2{
+        font-size: 21px!important;
+        font-weight: bold;
+    }
+    .hero-img-div{    
+        top: 260px;
+    }
+    .hero-img{
+        height: 200px;
+        /*width: 240px!important;*/
+    }
+    .hero-row{
+        height: 282px;
+    }
+
+    .farm-type-img {
+        height: 150px;
+    }
+    .myBtn{
+       
+        padding-right: 8px !important;
+        padding-left: 8px !important;
+        
+    }
+
+    .myimg{
+        padding-top: 20px;
+
+    }
+
+    .myimg img{
+        height: 80px!important;
+    }
+
+    .myCircleImg img{
+        width: 100px;
+        height: 100px;
+    }
+    .mytestpadding {
+        padding-top: 30px !important;
+    }
+
+    .myBackg .h2 {
+        font-size: 18px!important;
+        font-weight: bold;
+    }
+
+    .mySectionBox{
+        height: 430px!important;
+    }
+    .h4{
+        font-size: 15px!important;
+        font-weight: bold;
+    }
+}
+
+/*@media(max-width: 388px){
+    .hero-row{
+        height: 800px;
+    }
+
+    .hero-img-div{    
+        top: 550px;
+    }
+}*/

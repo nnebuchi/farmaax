@@ -1,15 +1,27 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\FarmCostAnalysis;
 use App\Farm;
 use App\Category;
+use App\ProductCategory;
+use App\ProductPhoto;
+use App\Product;
 use App\FarmPhotos;
 use App\LandForSale;
+use App\Lga;
+use App\State;
+use App\SiteSetting;
 use App\Mail\YourFarmHasBeenApproved;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Auth;
+use App\Milestone;
+use App\FarmerCost;
+use Illuminate\Support\Facades\DB;
 
 class AdminController extends Controller
 {
@@ -19,19 +31,19 @@ class AdminController extends Controller
     }
     public function lawyers()
     {
-        return view('admin.users.lawyers')->with(['users' => User::where('lawyer', 'yes')->get(), 'name' => 'Lawyers']);
+        return view('admin.users.lawyers')->with(['users' => User::where('lawyer', 'lawyer')->get(), 'name' => 'Lawyers']);
     }
     public function realtors()
     {
-        return view('admin.users.realtors')->with(['users' => User::where('realtor', 'yes')->get(), 'name' => 'Realtors']);
+        return view('admin.users.realtors')->with(['users' => User::where('realtor', 'realtor')->get(), 'name' => 'Realtors']);
     }
     public function marketers()
     {
-        return view('admin.users.marketers')->with(['users' => User::where('marketer', 'yes')->get(), 'name' => 'Marketers']);
+        return view('admin.users.marketers')->with(['users' => User::where('marketer', 'marketer')->get(), 'name' => 'Marketers']);
     }
     public function farmManagers()
     {
-        return view('admin.users.farm-managers')->with(['users' => User::where('farm_manager', 'yes')->get(), 'name' => 'Farm Managers']);
+        return view('admin.users.farm-managers')->with(['users' => User::where('farm_manager', 'farm_manager')->get(), 'name' => 'Farm Managers']);
     }
     public function assignFarm($id)
     {
@@ -39,50 +51,88 @@ class AdminController extends Controller
     }
     public function showCostAnalysisForm($id)
     {
-    $cat = Category::findOrFail($id);
 
-        return view('admin.cost-analysis')->with('name', $cat);
+        $data['farm'] = DB::table('categories')
+            ->join('farm_cost_analyses', "categories.id", "=", "farm_cost_analyses.farm_type")
+            ->select('categories.*', 'farm_cost_analyses.*', 'farm_cost_analyses.id as anal_id')
+            ->where(['categories.id' => $id])
+            ->get();
+
+        $data['id'] = $id;
+        $data['farmtype'] = Category::findOrFail($id);
+        $data['farmer_cost'] = FarmerCost::where('farm_type', $id)->first();
+
+        return view('admin.cost-analysis')->with($data);
     }
-    public function storeCostAnalysis(Request $request)
+    public function storeCostAnalysis(Request $request, $farmId)
     {
-     $data =  $request->validate([
-          'clearing' => 'required',
-          'weeding' => 'required',
-          'seeding' => 'required',
-          'transport' => 'required',
-          'planting' => 'required'
-       ]);
-      $cost =  FarmCostAnalysis::find(1);
-      if ($cost) {
-    $cost->farm_type = $request->farm_type;
-    $cost->clearing = $request->clearing;
-    $cost->weeding = $request->weeding;
-    $cost->transport = $request->transport;
-    $cost->planting = $request->planting;
-    $cost->seeding = $request->seeding;
-    $total  = $request->clearing + $request->weeding + $request->seeding + $request->transport + $request->planting;
-    $cost->total = $total;
-    $cost->save();
-        return redirect()->back()->with("success", 'Farm Cost Analysis has been added successfully');
-      }
-      else {
-        $cost =  new FarmCostAnalysis();
-        $cost->farm_type = $request->farm_type;
 
-        $cost->clearing = $request->clearing;
-        $cost->weeding = $request->weeding;
-        $cost->transport = $request->transport;
-        $cost->seeding = $request->seeding;
+        $farmer_cost = new FarmerCost;
+        $farmer_cost->farm_type = $farmId;
+        $farmer_cost->amount = $request->farmer_cost;
+        $farmer_cost->save();
 
-        $cost->planting = $request->planting;
-        $total  = $request->clearing + $request->weeding + $request->seeding + $request->transport + $request->planting;
-        $cost->total = $total;
-        $cost->save();         
+        $count = 0;
+        foreach ($request->parameters as $parameter) {
+
+            // array_push($analysis, $parameter);
+            $costAnalysis = new FarmCostAnalysis;
+            $costAnalysis->farm_type = $farmId;
+            $costAnalysis->parameter = $parameter;
+            $costAnalysis->amount = $request->amount[$count];
+            $costAnalysis->save();
+
+            $count++;
+        }
         return redirect()->back()->with("success", 'Farm Cost Analysis has been added successfully');
-      }
-       
     }
-   
+
+    public function updateCostAnalysis(Request $request, $farmId)
+    {
+
+        // dd($request);
+
+        $farmer_cost = FarmerCost::where('farm_type', $farmId)->first();
+        if (is_null($farmer_cost)) {
+            $farmer_cost = new FarmerCost;
+            $farmer_cost->farm_type = $farmId;
+        }
+        $farmer_cost->amount = $request->farmer_cost;
+        // number_format($request->farmer_cost, 2, '.', '');
+        $farmer_cost->save();
+
+        foreach ($request->parameters as $key => $parameter) {
+            $costAnalysis = FarmCostAnalysis::where('id', $key)->first();
+            $costAnalysis->parameter = $parameter;
+            $costAnalysis->save();
+        }
+
+
+        foreach ($request->amounts as $key => $amount) {
+            $costAnalysis = FarmCostAnalysis::where('id', $key)->first();
+            $costAnalysis->amount = $amount;
+            $costAnalysis->save();
+        }
+
+        if ($request->new_params) {
+            $count = 0;
+            foreach ($request->new_params as $parameter) {
+
+                // array_push($analysis, $parameter);
+                $costAnalysis = new FarmCostAnalysis;
+                $costAnalysis->farm_type = $farmId;
+                $costAnalysis->parameter = $parameter;
+                $costAnalysis->amount = $request->new_amounts[$count];
+                $costAnalysis->save();
+
+                $count++;
+            }
+        }
+
+        return redirect()->back()->with("success", 'Farm Cost Analysis has been updated successfully');
+    }
+
+
     public function showFarmManaged($id)
     {
         $farm  =  Farm::where('manager_id', $id)->first();
@@ -110,9 +160,11 @@ class AdminController extends Controller
     }
     public function sellLands()
     {
-        $layout = 'admin';
-        return view('lands.create')->with('layout', $layout);
+        $data['layout'] = 'admin';
+        $data['myStateLga'] = Lga::where('state_id', Auth::user()->state)->get();
+        return view('lands.create')->with($data);
     }
+
     public function soldLands()
     {
         return view('admin.lands.sold-lands')->with('lands', LandForSale::where('status', 'sold')->OrderBy('created_at', 'DESC')->get());
@@ -154,5 +206,249 @@ class AdminController extends Controller
         $user = User::findOrFail($farm->owner_id);
         Mail::to($user->email)->send(new YourFarmHasBeenApproved($user, $farm));
         return redirect(route('farms.index'))->with('success', 'You have approved a land');
+    }
+
+
+    public function addProduct()
+    {
+
+        $data['product_categories'] = ProductCategory::all();
+        return view('admin.store.addproduct')->with($data);
+    }
+
+    public function storeProduct(Request $request)
+    {
+
+        // dd($request->file('photo'));
+
+        $product = new Product;
+
+        $product->title         = $request->title;
+        $product->quantity      = $request->quantity;
+        $product->price         = $request->price;
+        $product->category      = $request->category;
+        $product->weight        = $request->weight;
+        $product->description   = $request->description;
+        $product->slug          = $request->title . '-' . microtime();
+
+        // process cover image
+        $productPhoto         = $request->photo;
+
+        $productPhotoName = $productPhoto->getClientOriginalName();
+        $productPhotoExt = $productPhoto->getClientOriginalExtension();
+        $productPhotoName = pathinfo($productPhoto, PATHINFO_FILENAME);
+        $productImgToDb = $productPhotoName . '_' . time() . '.' . $productPhotoExt;
+        $saveproductPhoto = $productPhoto->storeAs('public/storeProductCoverPhotos', $productImgToDb);
+
+        $product->photo = $productImgToDb;
+
+        $product->save();
+
+
+        // process other product image
+        if ($request->hasFile('productImages')) {
+            foreach ($request->file('productImages') as $productImage) {
+                $productImageName = $productImage->getClientOriginalName();
+                $productImageExt = $productImage->getClientOriginalExtension();
+                $productImageName = pathinfo($productImage, PATHINFO_FILENAME);
+                $productImgToDb = $productImageName . '_' . time() . '.' . $productImageExt;
+                $saveproductImage = $productImage->storeAs('public/storeProductImages', $productImgToDb);
+
+                $product_photo = new ProductPhoto;
+                $product_photo->product_id = $product->id;
+                $product_photo->product_image = $productImgToDb;
+
+                $product_photo->save();
+                /*productForSalePhoto::create([
+                    'land_for_sale_id' => $land->id,
+                    'images' => $landImgToDb
+                ]);*/
+            }
+        }
+
+        return redirect(route('edit-product', $product->id))->with('success', 'product uploaded');
+    }
+
+    public function editProduct($productId)
+    {
+
+        $data['product'] = Product::where('id', $productId)->first();
+        if (is_null($data['product'])) {
+            die('invalid request');
+        }
+        $data['product_categories'] = ProductCategory::all();
+        $data['product_photos'] = ProductPhoto::where('product_id', $productId)->get();
+
+        return view('admin.store.editproduct')->with($data);
+    }
+
+
+
+    public function updateProduct(Request $request, $productId)
+    {
+
+        // dd($request->file('productImages'));
+
+
+        $product = Product::where('id', $productId)->first();
+
+        $product->title         = $request->title;
+        $product->quantity      = $request->quantity;
+        $product->price         = $request->price;
+        $product->category      = $request->category;
+        $product->weight        = $request->weight;
+        $product->description   = $request->description;
+
+        // process cover image
+
+        if ($request->hasFile('photo')) {
+            // dd($request->file());
+            // Storage::disk('public')->delete('storeProductCoverPhotos/'.$product->photo);
+
+            if (file_exists('.' . Storage::url('app/public/storeProductCoverPhotos/' . $product->photo))) {
+                unlink('.' . Storage::url('app/public/storeProductCoverPhotos/' . $product->photo));
+            }
+
+
+            $productPhoto         = $request->photo;
+
+            $productPhotoName = $productPhoto->getClientOriginalName();
+            $productPhotoExt = $productPhoto->getClientOriginalExtension();
+            $productPhotoName = pathinfo($productPhoto, PATHINFO_FILENAME);
+            $productImgToDb = $productPhotoName . '_' . time() . '.' . $productPhotoExt;
+            $saveproductPhoto = $productPhoto->storeAs('public/storeProductCoverPhotos', $productImgToDb);
+            $product->photo         = $productImgToDb;
+        } else {
+            $product->photo = $request->current_photo;
+        }
+
+
+        $product->save();
+
+
+        // process other product image
+        if ($request->hasFile('productImages')) {
+            $exArr = [];
+            // dd($request->current_image[1]);
+            foreach ($request->file('productImages') as $key => $value) {
+                array_push($exArr, $key);
+
+                $product_photo = ProductPhoto::where('id', $key)->first();
+
+                // dd($product_photo->);
+                // dd($product_photo);
+                // Storage::disk('public')->delete('storeProductImages/'.$product_photo->product_image);
+
+
+                if (file_exists('.' . Storage::url('app/public/storeProductImages/' . $product_photo->product_image))) {
+                    unlink('.' . Storage::url('app/public/storeProductImages/' . $product_photo->product_image));
+                }
+
+                $productImage = $request->productImages[$key];
+                // dd($productImage);
+                $productImageName = $productImage->getClientOriginalName();
+                $productImageExt = $productImage->getClientOriginalExtension();
+                $productImageName = pathinfo($productImage, PATHINFO_FILENAME);
+                $productImgToDb = $productImageName . '_' . time() . '.' . $productImageExt;
+                $saveproductImage = $productImage->storeAs('public/storeProductImages', $productImgToDb);
+                $product_photo->product_image = $productImgToDb;
+
+                $product_photo->save();
+                /*productForSalePhoto::create([
+                    'land_for_sale_id' => $land->id,
+                    'images' => $landImgToDb
+                ]);*/
+            }
+
+            foreach ($request->current_image as $key => $value) {
+                if (!in_array($key, $exArr)) {
+
+                    $product_photo = ProductPhoto::where('id', $key)->first();
+
+                    $product_photo->product_image = $request->current_image[$key];
+
+                    $product_photo->save();
+                }
+            }
+        } else {
+            foreach ($request->current_image as $key => $value) {
+
+                $product_photo = ProductPhoto::where('id', $key)->first();
+
+                $product_photo->product_image = $request->current_image[$key];
+
+                $product_photo->save();
+            }
+        }
+
+        return redirect(route('edit-product', $productId))->with('success', 'product updated');
+    }
+
+    public function settings()
+    {
+
+        $data['settings'] = SiteSetting::first();
+        return view('admin/settings')->with($data);
+    }
+
+    public function updateSettings(Request $request)
+    {
+
+        // dd($request->request);
+
+        $settings = SiteSetting::first();
+
+        $settings->consultant_signup_fee = $request->consultant_signup_fee;
+        $settings->consultant_referral_bonus = $request->consultant_referral_bonus;
+        $settings->paystack_key = $request->paystack_key;
+        $settings->referral_points = $request->referral_points;
+        $settings->earning_count = $request->earning_count;
+        $settings->save();
+
+        return redirect('dashboard/admin/settings')->with('success', 'settings updated');
+    }
+
+    public function addMilestone($farmId)
+    {
+        $data['farm'] = $farmtype = Category::where('id', $farmId)->first();
+        $data['milestones'] = Milestone::where('farmtype', $farmtype->id)->get();
+        return view('farms.addmilestone')->with($data);
+    }
+
+    public function storeMilestone(Request $request, $farmId)
+    {
+
+        foreach ($request->milestones as $milestone) {
+            $stone = new Milestone;
+            $stone->farmtype = $farmId;
+            $stone->title = $milestone;
+
+            $stone->save();
+        }
+
+        return redirect(route('add-milestone', $farmId))->with('success', 'milestones added');
+    }
+
+    public function editMilestone($id)
+    {
+
+        $data['milestone'] = Milestone::where('id', $id)->first();
+        return view('farms.editmilestone')->with($data);
+    }
+
+    public function updateMilestone(Request $request, $id)
+    {
+
+        $stone = Milestone::where('id', $id)->first();
+        $stone->title = $request->milestone;
+        $stone->save();
+        return redirect(route('edit-milestone', $id))->with('success', 'milestones updated');
+    }
+
+    public function deleteMilestone($id)
+    {
+        Milestone::where('id', $id)->delete();
+
+        return redirect()->back()->with('success', 'milestone removed');
     }
 }

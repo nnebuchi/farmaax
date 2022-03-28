@@ -1,9 +1,14 @@
-@extends('layouts.user')
+@extends('layouts.dashboard_master')
 @section('meta-tag')
     <meta name="keywords" content="lands for sale, buy a land, agriculture, 'invest, plots of land'">
 @endsection
 @section('title', 'Farmaax Lands available for sales')
 @section('content')
+<style>
+    .text-buchi{
+        color: #262401;
+    }
+</style>
     <div class="container">
         <div class="row my-5">
             <div class="col-md-6 offset-md-3 item">
@@ -22,27 +27,10 @@
                                         alt="land image" width="100%" height="200px">
                                 </div>
                                 <div class="card-footer">
-                                    <h4 class=""> {{ $land->landTitle }} - &#8358;{{ number_format($land->price) }}</h4>
-                                    <br>
-                                    @if ($land->purchase_date == null)
-                                        <button type="button" class="btn btn-primary btn-sm" data-toggle="modal"
-                                            data-target="#modelId7">
-                                            Available for sale
-                                        </button>
-                                        {{-- <a href="{{ route('lands.show', $land->id) }}"
-                                            class="btn btn-warning btn-sm text-white" data-toggle="modal"
-                                            data-target="#landCart">
-                                            Add To Cart
-                                        </a> --}}
-                                        <a href="{{ route('lands.show', $land->id) }}"
-                                            class="btn btn-warning btn-sm text-white">
-                                            Add To Cart
-                                        </a>
-                                    @else
-                                        <a class="btn btn-danger btn-sm text-white">
-                                            Sold Out
-                                        </a>
-                                    @endif
+                                    <h6 class="text-success"> {{ $land->landTitle }} </h6>
+                                    <h5 class="text-buchi"> &#8358;{{ number_format($land->price) }}</h5>
+                                   <a href="{{ route('edit-land', $land->id) }}" class="btn btn-success btn-sm">Edit</a>
+                                    
                                 </div>
                             </div>
                         </a>

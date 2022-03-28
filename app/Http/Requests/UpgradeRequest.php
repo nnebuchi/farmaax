@@ -26,8 +26,12 @@ class UpgradeRequest extends FormRequest
         return [
             //
             'name' => 'required',
+            // 'farmType' => 'required',
+
+            'farmType' => 'required_if:name, ==, farm_manager'
            
         ];
+       
     }
     public function messages()
     {

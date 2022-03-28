@@ -7,5 +7,5 @@ use Illuminate\Database\Eloquent\Model;
 class LandForSale extends Model
 {
     //
-    protected $guarded = [];
+   public $table = 'land_for_sales';
 }

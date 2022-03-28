@@ -1,260 +1,271 @@
-@extends('layouts.auth')
+@extends('layouts.front')
 @section('content')
 @section('title', 'Welcome to Farmaax')
 
-    <!-- END nav -->
-    <!-- <div class="hero-wrap js-fullheight" style="background-image: url('images/lane.jpg'); background-position: bottom; height: 500px!important;" data-stellar-background-ratio="0.5"> -->
-    <section class="hero-wrap js-fullheight ftco-section ftco-no-pt"
-        style="background-color: #262401; height: 300px!important;" data-stellar-background-ratio="0.5">
-        <div class="row">
-            <div class="col-md-6 first-seg">
-                <div class="overlay"></div>
-                <div class="container">
-                    <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-start"
-                        data-scrollax-parent="true">
-                        <div class="col-md-10 offset-md-1 ftco-animate text-seg">
-                            <h4 class="text-white">A Tech Enabled Platform For Farmland & Agribusiness</h4>
-                            <p class="d-none d-lg-block">Farmaax is an Agricultural real estate, farming and farm investment
-                                company. We are giving
-                                you the
-                                opportunity to purchase farmland, invest in a farm or start your personal farm projects
-                                using your
-                                mobile device. Farmaax helps you execute and accomplish your agricultural goals. Receive
-                                regular
-                                farm updates, project progress updates to monitor your farm projects comfortably from
-                                anywhere in
-                                the world on your mobile device.
-                            </p>
-                            <p><a href="{{ route('register') }}" class="btn btn-primary ">Get Started </a>
-                            </p>
-                        </div>
-                    </div>
+
+
+    <!-- section 1 -->
+<section class="hero-section">
+    <div class="container pt-5">
+        <div class="row hero-row">
+            <div class="col-md-6 hero-img-div">
+                <div class="d-flex justify-content-center">
+                    <img src="images/farm-images/farmaax-image-file2.png" alt="" class="hero-img">
                 </div>
             </div>
-            <div class="col-md-6 second-seg" style="position: relative!important;">
-
-                <img src="images/happygirl.png" class="hero-img text-right">
+            <div class="col-md-6 px-5 px-md-0">
+                <div class="h2 myAmaranth"><span class="text-warning ">A TECH <br>PLATFORM FOR</span><br><span class="text-white">FARMLANDS & AGRIC BUSINESS</span></div>
+                <p class="text-white text-justify pt-3 hero-desc" style="width: 100%;"><span class="d-md-none  d-lg-block">Farmaax is an Agricultural real estate, farming and farm investment company. We are giving you the opportunity to purchase farmland, invest in a farm or start your personal farm projects using your mobile device. Farmaax helps you execute and accomplish your agricultural goals. Receive regular farm updates, project progress updates to monitor your farm projects comfortably from anywhere in the world on your mobile device.</span>  </p>
+          
+            <a href="{{ url('dashboard') }}" class="myBtn btn btn-success hero-btn">Get Started</a>  
+            
             </div>
+            {{-- <div class="col-12 d-md-block d-lg-none d-sm-none">
+                <p class="text-white text-justify pt-3">Farmaax is an Agricultural real estate, farming and farm investment company. We are giving you the opportunity to purchase farmland, invest in a farm or start your personal farm projects using your mobile device. Farmaax helps you execute and accomplish your agricultural goals. Receive regular farm updates, project progress updates to monitor your farm projects comfortably from anywhere in the world on your mobile device. </p>
+            </div> --}}
         </div>
+    </div>
+</section>
+
+
+    <!-- section 4  -->
+
+    @include('layouts.includes.farmtypes')
+
+    <!-- section 4 end -->
+
+    <!-- section 2 end -->
 
 
 
-    </section>
 
-    <section class="ftco-section ftco-no-pt bg-white" style="background-colo: #fbd341;">
-        <div class="container">
+     <section>
+        <div class="container-fluid">
             <div class="row">
-                <div class="col-lg-3 py-5 order-md-last">
-                    <div class="heading-section ftco-animate py-3">
-                        <!-- <span class="subheading">Services</span> -->
-                        <h2 class="mb-4 text-tertiary mt-3">Agro Store</h2>
-                        <p class="text-dark">A small river named Duden flows by their place and supplies it with the
-                            necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly
-                            into your.</p>
-                        <p><a href="#" class="btn btn-primary py-3 px-4">Get a Quote</a></p>
-                    </div>
-                </div>
-                <div class="col-lg-9 services-wrap px-4 pt-5">
-                    <div class="row pt-md-3">
-                        <div class="col-md-4 d-flex align-items-stretch" style="background-color: #676501;">
-                            <div class="services text-center">
-                                <div class="icon d-flex justify-content-center align-items-center">
-                                    <span class="flaticon-fence"></span>
-                                </div>
-                                <div class="text">
-                                    <h3>Farm Management</h3>
-                                    <p class="text-tertiary">Seeking justice in the world is a sed significant emotional
-                                        and investment when we follow this call.</p>
-                                </div>
-                                <a href="#" class="btn-custom d-flex align-items-center justify-content-center"><span
-                                        class="ion-ios-arrow-round-forward"></span></a>
-                            </div>
+              <div class="col-md-4 col-sm-6 no-padding">
+                    <div class="mySection2 mySectionBox"  style="background-image: url({{ asset('assets/img/leave2.jpg') }}); background-repeat: no-repeat;">
+                        <div class="myimg" >
+                            <img src="assets/img/agriculture.svg" width="110px" alt="">
                         </div>
-                        <div class="col-md-4 d-flex align-items-stretch" style="background-color: #262401;">
-                            <div class="services text-center">
-                                <div class="icon d-flex justify-content-center align-items-center">
-                                    <span class="flaticon-lawn-mower"></span>
-                                </div>
-                                <div class="text">
-                                    <h3>Agro Consultancy and Marketing</h3>
-                                    <p class="text-tertiary">Seeking justice in the world is a sed significant emotional
-                                        and investment when we follow this call.</p>
-                                </div>
-                                <a href="#" class="btn-custom d-flex align-items-center justify-content-center"><span
-                                        class="ion-ios-arrow-round-forward"></span></a>
+                        <div class="card bg-transparent">
+                            <div class="card-body">
+                                 <div class="h6 myPadding-h2 myAmaranth text-center px-lg-5 text-white text-uppercase">Farm <br> Setup</div>
+                                 <p class="px-md-5 px-2 text-left text-white">Start a farm from your mobile device and become a farm owner. Start your personal farm projects from your mobile device... </p>
+                                 <div class="d-flex justify-content-center px-5"><a href="{{ url('about/farmsetup') }}" class="btn btn-success myLearn">Learn more</a>
+                                 </div>
                             </div>
-                        </div>
-                        <div class="col-md-4 d-flex align-items-stretch" style="background-color: #4e9525;">
-                            <div class="services text-center">
-                                <div class="icon d-flex justify-content-center align-items-center">
-                                    <span class="flaticon-natural-resources"></span>
-                                </div>
-                                <div class="text">
-                                    <h3>Land Sales</h3>
-                                    <p class="text-tertiary">Seeking justice in the world is a sed significant emotional
-                                        and investment when we follow this call.</p>
-                                </div>
-                                <a href="#" class="btn-custom d-flex align-items-center justify-content-center"><span
-                                        class="ion-ios-arrow-round-forward"></span></a>
-                            </div>
+     
                         </div>
                     </div>
+              </div>
+              <div class="col-md-4 col-sm-6 no-padding">
+               
+                    <div class="mySection1 mySectionBox" style="background-image: url({{ asset('assets/img/leave1.jpg') }}); background-repeat: no-repeat;">
+                        <div class="myimg">
+                            <img src="assets/img/agronomy.svg" width="110px" alt="">
+                        </div>
+                       <div class="card bg-transparent">
+                           <div class="card-body">
+                                <div class="h6 myPadding-h2 myAmaranth text-center px-lg-5 text-white text-uppercase">Partnership farming</div>
+                                <h3 class="text-white">(Farm Investment)</h3>
+                                <p class="px-md-5 px-2 text-left text-white">Invest in farm projects, make returns and empower smallholder farmers... </p>
+                                <div class="d-flex justify-content-center px-5">
+                                    <a href="{{ url('about/partnership-farming') }}" class="btn btn-success myLearn">Learn more</a>
+                                </div>   
+                            </div>
+
+                       </div>
+                    </div>
+              </div>
+              <div class="col-md-4 col-sm-6 offset-sm-3 offset-md-0 no-padding">
+
+                <div class="mySection3 mySectionBox"  style="background-image: url({{ asset('assets/img/okleave.jpg')}}); background-repeat: no-repeat;">
+                   <div class="myimg">
+                    <img src="assets/img/grain.svg" width="110px" alt="">
+                   </div>
+                   <div class="card bg-transparent">
+                        <div class="card-body">
+                         <div class="h6 myPadding-h2 myAmaranth text-center px-lg-5 text-white text-uppercase">Lands</div>
+                         <h3 class="text-white">(Sales & Purchase)</h3>
+                         <p class="px-md-5 px-2 text-left text-white">Purchase or lease affordable farmlands in your preferred location across Nigeria.</p>
+
+                        <div class="d-flex justify-content-center px-5">
+                            <a href="{{ url('about/farmland') }}" class="btn btn-success myLearn">Learn more</a>
+                        </div>
+                        </div>
+
+                    </div>
                 </div>
+              </div>
             </div>
         </div>
     </section>
 
-    <section class="ftco-section ftco-no-pt ftco-no-pb bg-light mt-3 py-5">
-        <div class="container">
-            <div class="row d-flex">
-                <div class="col-md-6 d-flex">
-                    <div class="img img-video d-flex align-self-stretch align-items-center justify-content-center justify-content-md-end"
-                        style="background-image:url(images/about.jpg);">
-                        <a href="https://vimeo.com/45830194"
-                            class="icon-video popup-vimeo d-flex justify-content-center align-items-center">
-                            <span class="icon-play"></span>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-md-6 pl-md-5">
-                    <div class="row justify-content-start py-5">
-                        <div class="col-md-12 heading-section ftco-animate">
-                            <h2 class="mb-4">Where do you fit in?</h2>
-                            <p>Here you can choose the kind of Agro business you want
-                            </p>
-                            <div class="services-wrap">
-                                <a href="{{ url('about/farmsetup') }}" class="services-list">Own A Farm
-                                    <div class="btn-custom d-flex align-items-center justify-content-center"><span
-                                            class="ion-ios-arrow-round-forward"></span></div>
-                                </a>
-                                <a href="{{ url('about/partnershipfarming') }}" class="services-list">Partnership/Investment
-                                    Farming
+    <!-- section 3 end -->
 
-                                    <div class="btn-custom d-flex align-items-center justify-content-center"><span
-                                            class="ion-ios-arrow-round-forward"></span></div>
-                                </a>
-                                <a href="{{ url('about/ownafarm') }}" class="services-list">Own a Farmland
-                                    <div class="btn-custom d-flex align-items-center justify-content-center"><span
-                                            class="ion-ios-arrow-round-forward"></span></div>
-                                </a>
-                                <a href="{{ url('about/sellland') }}" class="services-list">Sell Land On Farmaax
-                                    <div class="btn-custom d-flex align-items-center justify-content-center"><span
-                                            class="ion-ios-arrow-round-forward"></span></div>
-                                </a>
-                                <a href="{{ url('about/become_a_realtor') }}" class="services-list">Become a
-                                    realtor/Consultant
-                                    <div class="btn-custom d-flex align-items-center justify-content-center"><span
-                                            class="ion-ios-arrow-round-forward"></span></div>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+
+   
+
+    <!-- section 5 -->
+    <section>
+        <div class="container-fluid  myTest myBackg" style="min-height: 300px;">
+            <div class="h2 myFontsize2 text-white mytestpadding text-center myAmaranth text-uppercase">
+                What Client say about us
             </div>
-        </div>
-    </section>
 
-    @include('layouts.includes.available_farms')
+            <div class="container">
+             
+                    
+                    <div class="row mx-auto my-auto pt-4">
+                        <div id="recipeCarousel" class="carousel slide w-100" data-ride="carousel">
+                            <div class="carousel-inner w-100" role="listbox">
+                                <div class="carousel-item active">
+                                    <div class="col-md-4">
+                                        <div class="card card-body myshadow bg-transparent " style="min-height: 410px!important;">
+                                            <div class="myCircleImg d-flex justify-content-center">
+                                                <img class="img-fluid" src="{{ asset('images/avatar.png') }}">
+                                            </div>
+                                            <div class="h3 text-center smalltext myAmaranth pt-3 text-warning">IB</div>
+                                            <h4 class="text-center text-white">Turkey</h4>
+                                            <p class="text-justify mytestsmall">Because of Farmaax, I am a proud owner of a farm. Just a click got everything started and done. They sent my land document to me in Turkey and updated me when my farm started and I receive updates on my farm regularly Via my Portal. Truly, they are making farm ownership a reality and seamless.</p>
 
-    <section class="ftco-section testimony-section" style="background-color: #676501;">
-        <div class="container">
-            <div class="row justify-content-center mb-5">
-                <div class="col-md-7 text-center heading-section ftco-animate">
-
-                    <h2 class="mb-4 text-white">Testimonials</h2>
-                </div>
-            </div>
-            <div class="row ftco-animate">
-                <div class="col-md-12">
-                    <div class="carousel-testimony owl-carousel ftco-owl">
-
-                        <div class="item">
-                            <div class="testimony-wrap py-4" id="testimony">
-                                <div class="text">
-                                    <p class="mb-4 testimonial-text mt-5">Farmaax is a trusted organization. <br>
-
-                                        As a young farmer, my first farmland was a lease from her, affordable and no
-                                        insecurity threats.</p>
-                                    <div class="d-flex align-items-center">
-                                        <div class="pl-3">
-                                            <p class="name">Adeola Daniel, <br> <span class="text-white">Rivers
-                                                    State.</span>
-                                            </p>
-                                            <!--  <span class="position">Marketing Manager</span> -->
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="testimony-wrap py-4" id="testimony">
-                                <div class="text">
-                                    <p class="mb-4 testimonial-text ">Because of Farmaax, I am a proud owner of a farm.
-                                        Just
-                                        a call got everything started and done. They sent my land document to me in Turkey
-                                        and updated me when my farm started and I received updates on my farm regularly Via
-                                        my Portal. Truly, they are making farm ownership a reality..</p>
-                                    <div class="d-flex align-items-center">
-                                        <div class="pl-3">
-                                            <p class="name">IB, <br>
-                                                <span class="text-white"> Lagos State.</span> </p>
-                                            <!--  <span class="position">Marketing Manager</span> -->
+                                <div class="carousel-item">
+                                    <div class="col-md-4">
+                                        <div class="card card-body myshadow bg-transparent" style="min-height: 410px!important;">
+                                            <div class="myCircleImg d-flex justify-content-center">
+                                                <img class="img-fluid" src="{{ asset('images/avatar.png') }}">
+                                            </div>
+                                            <div class="h3 text-center smalltext myAmaranth pt-3 text-warning">John </div>
+                                            <h4 class="text-center text-white">Dubai, UAE</h4>
+                                            <p class="text-justify mytestsmall">I am super excited, I now own a farm. after hustling here I decided to invest some of my money in farming, Farmaax made this easy. Thanks you Farmaax. </p>
+
+                                            
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="testimony-wrap py-4" id="testimony">
-                                <div class="text">
-                                    <p class="mb-4 testimonial-text mt-5">I am super excited, I now own a farm. after
-                                        hustling
-                                        here I decided to invest some of my money in farming, Farmaax made this easy. Thanks
-                                        you Farmaax. .</p>
-                                    <div class="d-flex align-items-center">
-                                        <div class="pl-3">
-                                            <p class="name">John, <br> <span class="text-white">Port harcourt.</span></p>
-                                            <!--  <span class="position">Marketing Manager</span> -->
+
+
+                                <div class="carousel-item">
+                                    <div class="col-md-4">
+                                        <div class="card card-body myshadow bg-transparent" style="min-height: 410px!important;">
+                                            <div class="myCircleImg d-flex justify-content-center">
+                                                <img class="img-fluid" src="{{ asset('images/avatar.png') }}">
+                                            </div>
+                                            <div class="h3 text-center smalltext myAmaranth pt-3 text-warning">ADEOLA </div>
+                                            <h4 class="text-center text-white">Lagos, Nigeria</h4>
+                                            <p class="text-justify mytestsmall">It was difficult to lease farmland according to my specifications, discovering FARMAAX platform made it easy and seamless.</p>
+
+                                            
                                         </div>
                                     </div>
                                 </div>
+                                {{-- <div class="carousel-item">
+                                    <div class="col-md-4">
+                                        <div class="card card-body myshadow bg-transparent" style="min-height: 410px!important;">
+                                            <div class="myCircleImg d-flex justify-content-center">
+                                                <img class="img-fluid" src="{{ asset('images/avatar.png') }}">
+                                            </div>
+                                            <div class="h3 text-center smalltext myAmaranth pt-3 text-warning">Daniel best</div>
+                                            <p class="text-justify mytestsmall">Because of Farmaax, I am proud to call myself a farm  </p>
+
+                                        </div>
+                                    </div>
+                                </div> --}}
+                                {{-- <div class="carousel-item">
+                                    <div class="col-md-4">
+                                        <div class="card card-body myshadow bg-transparent" style="min-height: 410px!important;">
+                                            <div class="myCircleImg d-flex justify-content-center">
+                                                <img class="img-fluid" src="assets/img/testimonial-img/18.jpg">
+                                            </div>
+                                            <div class="h3 text-center smalltext myAmaranth pt-3 text-warning">Buchi william</div>
+                                            <p class="text-justify mytestsmall">Because of Farmaax, I am proud to call myself a farm owner without having to step my foot on the farm. With their f </p>
+                                        </div>
+                                    </div>
+                                </div> --}}
+                                
                             </div>
+                            <!-- <a class="carousel-control-prev w-auto" href="#recipeCarousel" role="button" data-slide="prev">
+                                <span class="carousel-control-prev-icon bg-dark border border-dark p-3 rounded-circle" aria-hidden="true"></span>
+                                <span class="sr-only">Previous</span>
+                            </a> -->
+                            <!-- <a class="carousel-control-next w-auto" href="#recipeCarousel" role="button" data-slide="next">
+                                <span class="carousel-control-next-icon bg-dark border border-dark p-3 rounded-circle" aria-hidden="true"></span>
+                                <span class="sr-only">Next</span>
+                            </a> -->
+                       
                         </div>
+                
                     </div>
-                </div>
             </div>
         </div>
     </section>
+    <!-- section 5 end -->
 
 
-
-    <section class="ftco-section ftco-no-pt ftco-no-pb bg-primary">
-        <div class="container">
-            <div class="row d-flex justify-content-center">
-                <div class="col-lg-8 py-4">
-                    <div class="row">
-                        <div class="col-md-6 ftco-animate d-flex align-items-center">
-                            <h2 class="mb-0" style="color:white; font-size: 24px;">Subcribe to our Newsletter</h2>
-                        </div>
-                        <div class="col-md-6 d-flex align-items-center">
-                            <form action="#" class="subscribe-form form-inline">
-                                <div class="form-group d-fle row">
-                                    <div class="col-7">
-                                        <input type="text" class="form-control" placeholder="Enter email address">
+    @if (is_null($userIsSubscribed))
+        <div class="modal fade" id="modelId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                        <div class="modal-header " style="background-color: #63d471; background-image: linear-gradient(315deg, #4e9525 0%, #233329 74%);color:white; border-bottom: 1px solid #c99e1f !important;">
+                                <h5 class="modal-title text-center"> Latest offer/promo from Farmaax </h5>
+                                    <button type="button" class="close rounded-ci" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                            </div>
+                    <div class="modal-body bg-dark" style="background-color: #63d471; background-image: linear-gradient(315deg, #4e9525 0%, #233329 74%);color:white">
+                        <div class="container-fluid">
+                                @if ($popup)
+                                    <div class="about-offers text-center">
+                                        <h5 class="modal-title text-warning">{{ $popup->title }}</h5>
+                                        <h5 class="modal-title text-left">{{ $popup->message }}</h5>
                                     </div>
-                                    <div class="col-5">
-                                        <input type="submit" value="Subscribe" class="submit form-control">
+                                    <hr class="bg-white">
+                                @endif
+
+
+                                <div class=" text-capitalize">Subscribe and get latest updates from us.</div>
+                                <form action="{{ route('registerToMailists') }}" method="post">
+                                    @csrf
+                                    <div class="form-group">
+                                        <div class="input-group mb-3 pt-4">
+                                            <input type="email" class="form-control " placeholder="Email address" name="email" aria-label="" aria-describedby="basic-addon2" required>
+                                            <div class="input-group-append">
+                                              <button class="input-group-text btn" style="background-color: black!important; color: white!important;">Subcribe</button>
+                                            </div>
+                                          </div>
+
                                     </div>
-
-
-                                </div>
-                            </form>
+                                </form>
                         </div>
+
                     </div>
+
                 </div>
             </div>
         </div>
-    </section>
+    @endif
 
+    <script>
+
+
+        $(window).on('load', function() {
+            if (!sessionStorage.getItem('shown-modal')){
+            $('#modelId').modal('show');
+            sessionStorage.setItem('shown-modal', 'true');
+          }
+        // sessionStorage.clear();
+
+
+        });
+
+
+    </script>
+
+
+</body>
+</html>
 
 @endsection

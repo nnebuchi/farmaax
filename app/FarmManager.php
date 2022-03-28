@@ -6,6 +6,5 @@ use Illuminate\Database\Eloquent\Model;
 
 class FarmManager extends Model
 {
-    protected $guarded = []; 
-    //
+   public $table ='farm_managers';
 }

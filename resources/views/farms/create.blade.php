@@ -72,9 +72,9 @@
                                     <label>State <span class="text-danger"><strong>*</strong></span></label>
                                     <select class='form-control pick-state' name="state" id="pick-state">
                                         <option class="myState" value="" selected disabled>State</option>
-                                        @foreach ($states as $item)
-                                            <option value="{{ $item->id }}">{{ $item->name }}</option>
-                                        @endforeach
+                                        {{-- @foreach ($states as $item) --}}
+                                            {{-- <option value="{{ $item->id }}">{{ $item->name }}</option> --}}
+                                        {{-- @endforeach --}}
                                     </select>
                                 </div>
 
@@ -87,17 +87,17 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label>Location <span class="text-danger"><strong>*</strong></span></label>
+                                    <label>Location <span class="text-danger"></span></label>
                                     <select class='form-control pick-town' name="town" id="pick-town">
                                         <option class="myTown" value="" selected disabled>Select your Location</option>
 
                                     </select>
                                 </div>
-                                <div class="form-group">
+                                {{-- <div class="form-group">
                                     <label for="description">Farm Description: </label>
                                     <textarea class="form-control" name="description" id="description" rows="6"
                                         required></textarea>
-                                </div>
+                                </div> --}}
                                 <div class="form-group">
                                     <label for="duration">Duration (months):</label>
                                     <input type="number" name="duration" id="duration" class="form-control">
@@ -155,7 +155,7 @@
             $('.pick-country').on('change', function() {
                 let country_id = $(this).val();
 
-                $.ajax('pickstates', {
+                $.ajax(url+'/pickstates', {
                     type: 'POST',
 
                     data: {
@@ -163,6 +163,7 @@
                         '_token': universal_token,
                     }, // data to submit
                     success: function(feedback, status, xhr) {
+                        // console.log(feedback);
                         let arr_count = -1
                         let result = JSON.parse(feedback);
 
@@ -212,7 +213,7 @@
 
             $('.pick-state').on('change', function() {
                 let state_id = $(this).val();
-                $.post('picklgas', {
+                $.post(url+'/picklgas', {
                         'state_id': state_id,
                         '_token': universal_token,
                     },
@@ -238,7 +239,7 @@
 
             $('.pick-lga').on('change', function() {
                 let lga_id = $(this).val();
-                $.post('picktowns', {
+                $.post(url+'/picktowns', {
                         'lga_id': lga_id,
                         '_token': universal_token,
                     },

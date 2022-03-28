@@ -2,7 +2,7 @@
     @section('title', 'Add farm category')
     @section('content')
     <style>
-    input{
+    input, select, textarea{
         border: 2px solid #676501!important;
     }
 
@@ -60,7 +60,13 @@
                                 </div>
 
 
-                                 
+                                 <div class="form-group">
+                                    <label for="description">Farm Description: </label>
+                                    <textarea class="form-control" name="description" id="description" rows="6" required>{{ $thiscat->description}}</textarea>
+                                         @error('description')
+                                    <li class="text-danger">{{ $message }}</li>
+                                    @enderror
+                                </div>
                                 
                                 <div class="form-group">
                                     <label for="image">type Image:</label>
@@ -111,4 +117,8 @@
 
             </div>
         </div>
+        <script src="https://cdn.ckeditor.com/4.16.0/standard/ckeditor.js"></script>
+         <script>
+                CKEDITOR.replace( 'description' );
+        </script>
     @endsection

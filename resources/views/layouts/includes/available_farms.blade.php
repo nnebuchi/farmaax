@@ -13,7 +13,7 @@
 
                     <div class="card card-body bg-transparent myBorder" style="">
                         <img class="img-fluid" src="{{asset('storage/farmcategoryImages/'.$farm->typeimage) }}"
-                            style="border-radius: 20px;height: 300px;">
+                            style="border-radius: 20px;height: 200px;">
                         <div class="text text-center ">
                             <h3><a href="#">{{ $farm->farmtype}}</a></h3>
                             <a href="{{ url('dashboard') }}" class="btn secondary-btn btn-start">Start Farm</a>

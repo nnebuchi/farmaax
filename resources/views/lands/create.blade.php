@@ -1,13 +1,19 @@
-@extends('layouts.'.$layout)
+@extends('layouts.dashboard_master')
 @section('meta-tags')
     <meta name="description" content="Sell your lands on farmaax">
     <meta name="keywords" content="Lands, lands for sale, sell lands, purchase a land">
 @endsection
 @section('content')
 @section('title', 'Sell a land on Farmaax')
-    <div class="container mt-4">
+<style type="text/css">
+    .card{
+        background-color: #262401;
+        color: white!important;
+    }
+</style>
+    <div class="containe mt-4">
         <div class="row justify-content-center">
-            {{-- <div class="col-md-12 "> --}}
+            <div class="col-md-12 ">
                 <div class="card my-5">
                     <div class="card-header text-center">
                         Sell A Land on Farmaax
@@ -18,6 +24,7 @@
                     <div class="card-body">
                         <form action="{{ route('lands.store') }}" method="post" enctype="multipart/form-data">
                             @csrf
+                            
                             <div class="row">
                                 <div class="col-lg-4 offset-lg-2 col-md-5 offset-md-1 col-sm-8 offset-sm-2">
                                     <div class="form-group">
@@ -30,7 +37,7 @@
                                         @enderror
                                     </div>
                                     <div class="form-group">
-                                        <label for="price">Price:</label>
+                                        <label for="price">Total Price:</label>
                                         <input type="number" name="price" id="price" value="{{ old('price') }}"
                                             class="form-control @error('price') is-invalid @enderror" required>
                                         @error('price')
@@ -48,27 +55,35 @@
                                     <div class="form-group">
                                         <label for="state">State:</label>
 
-                                        <select class="form-control" name="state">
-                                            <option>State of location</option>
-                                            @foreach ($states as $state)
-                                                <option value="{{ $state->name }}">{{ $state->name }}</option>
-                                            @endforeach
+                                        <select name="state" id="state" class="form-control @error('state') is-invalid @enderror" required>
+                                            <option selected disabled>Select state</option>
+                                            {{-- @if(Auth::user()->state!=null) --}}
+                                                @foreach( $states as $state)
+                                                <option value="{{ $state->id }}"  @if(Auth::user()->state==$state->id)selected @endif>{{ $state->name }}</option>
+                                                @endforeach
+                                            {{-- @endif --}}
                                         </select>
+
                                         @error('state')
                                         <li class="text-danger">{{ $message }}</li>
                                         @enderror
                                     </div>
 
+
                                     <div class="form-group">
                                         <label for="lga">L.G.A:</label>
-                                        <input id="lga" value="{{ old('lga') }}"
-                                            class="form-control @error('lga') is-invalid @enderror" type="text" name="lga"
-                                            required>
+                                        <select name="lga" id="lga" class="form-control @error('lga') is-invalid @enderror" required>
+                                            <option selected disabled>Select LGA</option>
+
+                                                @foreach( $myStateLga as $lga)
+                                                    <option value="{{ $lga->id }}"  @if(Auth::user()->lga==$lga->id)selected @endif>{{ $lga->name }}</option>
+                                                @endforeach
+                                        </select>
                                         @error('lga')
                                         <li class="text-danger">{{ $message }}</li>
                                         @enderror
                                     </div>
-                                    <div class="form-group">
+                                    <div cxlass="form-group">
                                         <label for="town">Town:</label>
                                         <input id="town" value="{{ old('town') }}"
                                             class="form-control @error('town') is-invalid @enderror" type="text" name="town"
@@ -94,7 +109,7 @@
                                             required></textarea>
                                     </div>
                                     <div class="form-group">
-                                        <label for="coverImage">Land Cover Image:</label>
+                                        <label for="coverImage">Land Cover Image (single photo):</label>
                                         <input type="file" class="form-control" name="coverImage" id="coverImage"
                                             placeholder="Land Cover Image" required>
                                         @error('coverImage')
@@ -102,7 +117,7 @@
                                         @enderror
                                     </div>
                                     <div class="form-group">
-                                        <label for="landImages">Land Images:</label>
+                                        <label for="landImages">Land Images (multiple photo allowed):</label>
                                         <input type="file" multiple class="form-control" name="landImages[]" id="landImages"
                                             placeholder="Land Cover Image">
                                         @error('landImages[]')
@@ -126,7 +141,7 @@
                             </div>
 
                             <div class="col-md-4 offset-md-4 col-sm-6 offset-sm-3">
-                                <button type="submit" class="btn-block btn btn-primary">Upload Land</button>
+                                <button type="submit" class="btn-block btn primary-btn">Upload Land</button>
                             </div>
 
 
@@ -134,6 +149,6 @@
                     </div>
                 </div>
             </div>
-            {{-- </div> --}}
+            </div>
     </div>
 @endsection

@@ -19,7 +19,7 @@ class NewLandPurchase extends Mailable
     public function __construct($updateLandDetails)
     {
         //
-       $this->updateLandDetails =  $updateLandDetails
+        $this->updateLandDetails =  $updateLandDetails;
     }
 
     /**

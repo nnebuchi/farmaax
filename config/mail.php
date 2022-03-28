@@ -32,6 +32,7 @@ return [
     |            "postmark", "log", "array"
     |
     */
+    
 
     'mailers' => [
         'smtp' => [
@@ -40,8 +41,8 @@ return [
             'host' => env('MAIL_HOST', 'smtp.gmail.com'),
             'port' => env('MAIL_PORT', 465),
             'encryption' => env('MAIL_ENCRYPTION', 'ssl'),
-            'username' => env('MAIL_USERNAME', 'njokusunnyojo@gmail.com'),
-            'password' => env('MAIL_PASSWORD',  'hmhsamqvjvkkqqzo'),
+            'username' => env('MAIL_USERNAME', 'farmaaxng@gmail.com'),
+            'password' => env('MAIL_PASSWORD',  'xlagzwufmzcimxbx'),
             'timeout' => null,
             'auth_mode' => null,
         ],

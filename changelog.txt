@@ -1,0 +1,21 @@
+views
+	admin/settings
+	layout/admin
+	users/updateaccount
+	pages/confirm_investment
+	
+
+controllers
+	AdminController
+	PaymentController
+	UserController
+
+
+public
+	
+
+
+DB:
+		
+
+route/web

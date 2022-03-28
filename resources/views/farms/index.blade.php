@@ -1,5 +1,5 @@
-@extends('layouts.user')
-
+@extends('layouts.dashboard_master')
+@section('content')
 
 <style>
     .farm-cover-img {
@@ -9,9 +9,15 @@
     .blog-entry {
         box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.296);
     }
+
+
+    .blog-entry {
+    overflow: hidden;
+}
+
 </style>
-@section('content')
-<section class="ftco-sectio bg-light py-5">
+
+<section class="py-5">
 
     <div class="row">
         <div class="col-md-6 offset-md-3 item">
@@ -59,7 +65,7 @@
                     @csrf
                     <div class="form-group">
                         <label>Units</label>
-                        <input type="number" name="units" class="form-control units" required>
+                        <input type="number" name="units" class="form-control units" required min="1" >
                     </div>
                     <input type="hidden" name="farm_id" class="farm_id" required>
                     {{-- <input type="hidden" name="farm_id" class="farm_id"> --}}
@@ -73,13 +79,13 @@
 </div>
 
 
-<section class="ftco-section bg-light" style="background-color: #262401!important;">
+<section class="ftco-section pt-5 pb-2" style="background-color: #262401!important; border-radius: 6px;">
     <div class="container">
         <div class="row d-flex">
             @foreach($farms as $farm)
             <div class="col-md-4 col-lg-3  col-sm-6 d-flex ftco-animate">
-                <div class="blog-entry justify-content-end">
-                    <a href="blog-single.html" class="block-20 farm-cover-img"
+                <div class="blog-entry justify-content-end bg-white"  style="border-radius:100px; border:10px solid #4E9525">
+                    <a href="#!" class="block-20 farm-cover-img"
                         style="background-image: url({{asset('storage/farmcategoryImages/'.$farm->typeimage) }});">
                     </a>
                     <div class="text p-4 float-right d-block item">
@@ -140,9 +146,10 @@
                                         let farmtype='<?php echo $farm->farmtype; ?>';
 
                                         $('.modal-body').empty();
-                                        $('.modal-body').html(`<?=$farm->description?>`);
+                                        $('.modal-body').html(`<?=$farm->farmdescription?>`);
                                         $('.modal-title').empty();
                                         $('.modal-title').append(farmtype);
+                                        $('.units').attr('max', '{{ $farm->total_units }}');
                                     });
 
 
